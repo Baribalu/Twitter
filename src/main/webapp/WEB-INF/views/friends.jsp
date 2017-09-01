@@ -49,21 +49,30 @@ li a:hover {
 		</c:if>
 	</ul>
 
-	<h2>Hi ${sessionScope.username }!</h2>
+	<h2>${sessionScope.username}'sFriends!</h2>
+	<br />
 
-	<div>${about}</div>
-
-
-	<% if(session.getAttribute("username") != null){ %>
-	<sf:form modelAttribute="newMessage" action="home" method="POST">
-			<sf:input path="content" type="text" />
-			<input type="submit" value="Post" />
-		</sf:form>
-		
-		<c:forEach items="${messages}" var="message">
-			<div>${message.user}:${message.content}</div>
+	<table>
+		<tr>
+			<th>Full Name</th>
+			<th>Username</th>
+			<th>Age</th>
+			<th>Follow</th>
+		</tr>
+		<c:forEach items="${friends}" var="friend">
+			<tr>
+				<td>${friends.fullName}</td>
+				<td>${friends.username}</td>
+				<td>${friends.age}</td>
+				<c:if test="${friends.isFriend} == true">
+					<td><button type="submit" value="Unfollow">Unfollow</button></td>
+				</c:if>
+				<c:if test="${friends.isFriend} == false">
+					<td><button type="submit" value="Unfollow">Follow</button></td>
+				</c:if>
+			</tr>
 		</c:forEach>
-	<%}%>
+	</table>
 
 </body>
 

@@ -30,7 +30,7 @@ public class LoginController {
 	public String login(@ModelAttribute("account") Account account, ModelMap model, HttpServletRequest request) {
 		Account myAccount = userService.getAccount(account);
 		if (myAccount != null) {
-			request.getSession().setAttribute("username", "andrei");
+			request.getSession().setAttribute("username", account.getUsername());
 			return "redirect:home";
 		}
 		else {
