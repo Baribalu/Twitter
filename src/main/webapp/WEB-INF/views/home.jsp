@@ -1,15 +1,19 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page session="false"%>
 <html>
 <head>
-	<title>Home</title>
+<title>Home</title>
 </head>
 <body>
-<h1>
-	Hello world!  
-</h1>
+	<h1>Twitter</h1>
 
-<P>  The time on the server is ${serverTime}. </P>
-<p> Username is ${username} </p>
+	<c:forEach items="${accounts}" var="account">
+		<c:forEach items="${account.messages}" var="message">
+			<div style="background-color: red">
+				${account.fullName}:${message}
+			</div>
+		</c:forEach>
+	</c:forEach>
+
 </body>
 </html>
