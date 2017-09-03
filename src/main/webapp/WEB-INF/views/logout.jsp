@@ -46,7 +46,7 @@ li a:hover {
 			<li><a href="logout">Logout</a></li>
 			<li><a href="friends">Friends</a></li>
 		</c:if>
-		
+		<li><a href="about">About</a></li>
 	</ul>
 	<br/><br/><br/>
 	<div>Goodbye ${sessionScope.username}!</div>

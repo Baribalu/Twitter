@@ -14,7 +14,7 @@ import com.cgm.entities.Account;
 import com.cgm.twitter.services.UserService;
 
 @Controller
-@RequestMapping("/login")
+@RequestMapping("login")
 public class LoginController {
 
 	@Autowired

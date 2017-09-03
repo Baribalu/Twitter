@@ -13,5 +13,7 @@ public interface UserService {
 	public void postMessage(String username, Message message);
 	public ArrayList<Message> getFollowingMessages(String username);
 	public ArrayList<Friend> getFriends(String username);
+	public void addUser(String username,String user);
+	public void removeUser(String username,String user);
 	
 }

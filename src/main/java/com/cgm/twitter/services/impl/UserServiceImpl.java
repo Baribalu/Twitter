@@ -50,18 +50,34 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public ArrayList<Friend> getFriends(String username){
+	public ArrayList<Friend> getFriends(String username) {
 		ArrayList<String> friendsUsername = new ArrayList<String>();
 		ArrayList<Friend> friends = new ArrayList<Friend>();
+		Friend newFriend;
 		friendsUsername = AccountBuilder.following.get(username);
-		for(Account account:AccountBuilder.accounts) {
-			for(String friend:friendsUsername) {
-				if(account.getUsername().equals(friend)) {
-					friends.add(new Friend(account.getUsername()))
+		for (Account account : AccountBuilder.accounts) {
+			newFriend = new Friend(account.getUsername(), account.getFullName(), account.getAge(), true);
+			for (String friend : friendsUsername) {
+				if (account.getUsername().equals(friend)) {
+					friends.add(newFriend);
 				}
 			}
+			if(friends.indexOf(newFriend) == -1 && (!account.getUsername().equals(username))) {
+				friends.add(new Friend(account.getUsername(),account.getFullName(),account.getAge(),false));
+			}
 		}
+		
 		return friends;
+	}
+	
+	@Override
+	public void addUser(String username,String user) {
+		AccountBuilder.following.get(username).add(user);
+	}
+	
+	@Override
+	public void removeUser(String username,String user) {
+		AccountBuilder.following.get(username).remove(user);
 	}
 
 }

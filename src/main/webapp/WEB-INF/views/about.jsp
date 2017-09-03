@@ -50,23 +50,6 @@ li a:hover {
 		<li><a href="about">About</a></li>
 	</ul>
 
-	<h2>Hi ${sessionScope.username }!</h2>
-
-	<div>${about}</div>
-
-
-	<% if(session.getAttribute("username") != null){ %>
-	<sf:form modelAttribute="newMessage" action="home" method="POST">
-			<sf:input path="content" type="text" />
-			<input type="submit" value="Post" />
-		</sf:form>
-		
-		<c:forEach items="${messages}" var="message">
-			<div>${message.user}:${message.content}</div>
-		</c:forEach>
-	<%}%>
-
+	<h2>Hi, this is the about page!</h2>
 </body>
-
-
 </html>

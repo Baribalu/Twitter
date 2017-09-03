@@ -5,6 +5,22 @@
 <head>
 <title>Twitter</title>
 <style>
+table {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+table, th, td {
+	border: 1px solid black;
+}
+
+th {
+	height: 50px;
+}
+td{
+	text-align:center;
+}
+
 body {
 	text-align: center;
 }
@@ -47,6 +63,7 @@ li a:hover {
 			<li><a href="logout">Logout</a></li>
 			<li><a href="friends">Friends</a></li>
 		</c:if>
+		<li><a href="about">About</a></li>
 	</ul>
 
 	<h2>${sessionScope.username}'sFriends!</h2>
@@ -61,15 +78,26 @@ li a:hover {
 		</tr>
 		<c:forEach items="${friends}" var="friend">
 			<tr>
-				<td>${friends.fullName}</td>
-				<td>${friends.username}</td>
-				<td>${friends.age}</td>
-				<c:if test="${friends.isFriend} == true">
-					<td><button type="submit" value="Unfollow">Unfollow</button></td>
+				<td>${friend.fullName}</td>
+				<td>${friend.username}</td>
+				<td>${friend.age}</td>
+
+				<c:if test="${friend.isFriend}">
+					<td><sf:form action="friends/remove"
+							modelAttribute="newFriend">
+							<sf:input type="text" style="display:none;" path="username"
+								value="${friend.username }" />
+							<input type="submit" value="Unfollow" />
+						</sf:form></td>
 				</c:if>
-				<c:if test="${friends.isFriend} == false">
-					<td><button type="submit" value="Unfollow">Follow</button></td>
+				<c:if test="${not friend.isFriend}">
+					<td><sf:form action="friends/add" modelAttribute="newFriend">
+							<sf:input type="text" style="display:none;" path="username"
+								value="${friend.username }" />
+							<input type="submit" value="Follow" />
+						</sf:form></td>
 				</c:if>
+
 			</tr>
 		</c:forEach>
 	</table>

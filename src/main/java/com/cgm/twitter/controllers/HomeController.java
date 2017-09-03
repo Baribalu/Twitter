@@ -26,7 +26,8 @@ import com.cgm.twitter.services.UserService;
 /**
  * Handles requests for the application home page.
  */
-@Controller("home")
+@Controller
+@RequestMapping("/home")
 public class HomeController {
 	
 	@Autowired
